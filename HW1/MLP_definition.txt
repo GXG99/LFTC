@@ -1,0 +1,26 @@
+1.Specificarea mini-limbajului de programare
+<program>  -> 
+#include <iostream> 
+using namespace std; 
+ int main() {          
+<declaration><instructions> 
+return 0; 
+}
+<declaration> -> <type> <variables>”;” | <type> <variables>”;”<declaration>
+<type> -> int | double | char | float | string | <user_defined>
+<user_defined> -> struct ID{<declaration>}”;”  
+<variables> -> ID | <variables>, ID
+<instructions> -> <instruction> | <instruction> <instructions>
+<instruction> -> <initialization> | <looping> | <if_statement> | <write> | <read>
+<initialization> -> ID = <expression>”;”
+<expression> -> “CONST” | ID | <expression> <operator> <expression> (de definit constanta)
+<operator> -> + | - | / | *
+<looping> -> while (<boolean_expression> ) <body>
+<boolean_exrpession> -> <expression> <relation> <expression>
+<relation> -> == | < | > | <= | >= | !=
+<body> -> { <instructions > }”;”
+<if_statement> -> if(<boolean_expression>) <body> | if (<boolean_expression>) <body> else <body>
+<read> -> cin >> ID;
+<write> -> cout << <expression>”;”
+<letter> -> “a” | “b” | … | “z”
+<ID> -> <letter> | <ID> <letter>
