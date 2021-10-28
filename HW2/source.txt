@@ -1,1 +1,17 @@
-a
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int a;
+    int b;
+    while (a != b) {
+        if (a > b)
+            a = a - b;
+            current = 120;
+        else
+            b = b - a;
+            value = 130;
+    }
+    return 0;
+}

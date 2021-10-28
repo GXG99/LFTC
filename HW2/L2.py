@@ -6,7 +6,7 @@ f.close()
 
 f = open("parsed.txt", "w")
 
-key_words = ["int", "float", "struct", "while", "if", "else", "double"]
+key_words = ["int", "float", "struct", "while", "if", "else", "double", "main()"]
 relations = ["==", "!=", "<", ">", "<=", ">="]
 operators = ["+", "-", "/", "*", "="]
 separators = ["(", ")", "{", "}", " ", ";", '\n']
@@ -14,9 +14,9 @@ id_regex = re.compile('^[a-z]{1,250}[;)+-/=* ]')
 const_regex = re.compile('^[1-90]*[;=)+-/* ]')
 include_regex = re.compile('^#include ((<[^>]+>)|("[^"]+"))')
 
-
 subject = ""
 x = 0
+
 for line in lines:
     x += 1
     y = 0
@@ -44,7 +44,7 @@ for line in lines:
                 f.write(subject[-1] + '\n')
             subject = ""
 
-        elif (line[y-1] in separators):
+        elif (subject[-1] in separators and subject[0] != '#' and subject != "main("):
             print("Parsing impossible at line {line}, character {char} -> {subject} cannot be parsed"
                   .format(line=str(x), char=str(y - len(subject)), subject=subject[0:-1]))
             f.write("Parsing impossible at line {line}, character {char} -> {subject} cannot be parsed"
