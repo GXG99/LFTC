@@ -1,0 +1,4 @@
+S -> b L e
+S -> s
+L -> s
+L -> S p L

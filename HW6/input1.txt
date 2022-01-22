@@ -1,0 +1,7 @@
+int A;
+int B;
+int C;
+A = 4;
+B = 6;
+C = A + B;
+cout << C;

@@ -1,0 +1,6 @@
+S -> int main ( ) {
+F -> }
+C -> return const ;
+O -> + | - | * | / | % | > | >= | < | <= | == | >> | <<
+I -> int id = const O const ;
+S -> S I C F

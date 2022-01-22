@@ -1,4 +1,5 @@
 from datastructures.BinarySearchTree import BinarySearchTree
+from utils.Automata import Automata
 import re
 
 f = open("parsed.txt")
@@ -13,18 +14,19 @@ separators = ["(", ")", "{", "}", " ", ";", '\n']
 id_regex = re.compile('^[a-z]{1,250}')
 const_regex = re.compile('^[0-9]*([,.][0-9]{1,2})?$')
 
-# include_regex = re.compile('^#include ((<[^>]+>)|("[^"]+"))')
-
-
 f = open("FIP.txt", "w")
 
 g = open("idTS.txt", "w")
 
 m = open("consTS.txt", "w")
 
+
 def main():
     id_table = BinarySearchTree()
     const_table = BinarySearchTree()
+
+    constants_automata = Automata("DFA_Constants.txt")
+    id_automata =  Automata("DFA_ID.txt")
 
     id_indexes = []
     const_indexes = []
@@ -37,18 +39,17 @@ def main():
                 table.append(item + ' ' + str(key_words.index(item)) + '\n')
             else:
                 table.append(item + ' ' + '-1' + '\n')
-        elif id_regex.match(item):
+        elif id_automata.accepts(item):
             table.append(item)
             id_indexes.append(index)
             id_table.insert(item)
-        elif const_regex.match(item):
+        elif constants_automata.accepts(item):
             table.append(item)
             const_indexes.append(index)
             const_table.insert(item)
         else:
             print("Error at item: " + item)
         index += 1
-
 
     for identifier in id_indexes:
         table[identifier] = table[identifier] + " " + str(id_table.inorder([]).index(table[identifier])) + '\n'

@@ -63,13 +63,13 @@ def find_longest_accepted_prefix(states, final_states, alphabet, state_transitio
 
 
 def run():
-    text = "Maria si George"
-    print(text)
     input_type = input("Keyboard/File: ")
     if input_type == "File":
         states, final_states, alphabet, state_transition_table = read_finite_automata_from_file()
     elif input_type == "Keyboard":
         states, final_states, alphabet, state_transition_table = read_finite_automata_from_keyboard()
+    else:
+        states, final_states, alphabet, state_transition_table = read_finite_automata_from_file()
     options = "1 - Print states \n" \
               "2 - Print alphabet \n" \
               "3 - Print transitions \n" \
@@ -94,6 +94,7 @@ def run():
             menu[cmd](states, final_states, alphabet, state_transition_table)
         else:
             print("Invalid command")
+
 
 def read_finite_automata_from_keyboard():
     temp = input("Enter states separated by ' ' (eg. q0 q1 q2): ")
